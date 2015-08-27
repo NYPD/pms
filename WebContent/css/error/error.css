@@ -1,0 +1,8 @@
+/** Classes used to style 404 error pages and images**/
+@media(min-height:767px){
+	.gup-tank-image{
+		position: fixed;
+		left: 0px;
+		bottom: 70px;
+	}
+}

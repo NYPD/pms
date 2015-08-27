@@ -1,0 +1,147 @@
+/***************** Global overwrites *****************/
+.carousel-control .fa-arrow-left, .carousel-control .fa-arrow-right{
+	position: absolute;
+	top: 47%;
+	z-index: 5;
+	display: inline-block;
+}
+.carousel-control .fa-arrow-left{
+	left: 50%;
+}
+.carousel-control .fa-arrow-right{
+	right: 50%;
+}
+.carousel-inner > .item img{
+	height: 300px;
+}
+.carousel-indicators{
+	bottom: 0px;
+}
+@media(min-width:768px){
+	.carousel-caption{
+		padding-bottom: 0px;
+	}
+}
+@media(min-width:992px){
+	.carousel-caption{
+		padding-bottom: 10px;
+	}
+}
+@media(min-width:1200px){
+	.carousel-caption{
+		padding-bottom: 20px;
+	}
+}
+
+/***************** Media Queries *****************/
+@media(max-width:991px){
+	.battle-column{
+		float: none;
+	}
+	.battle-info{
+		margin-right: 25px;
+	}
+}
+@media(min-width:992px){
+	.battle-column{
+		float: right;
+	}
+}
+@media(max-width:767px){
+	.check-in-container > .replay-or-span{
+		display: block;
+		width: auto;
+	}
+}
+@media(min-width:768px){
+	.check-in-container > .replay-or-span{
+		display: inline-block;
+		width: 75px;
+	}
+
+}
+
+/***************** Main Content *****************/
+
+
+/* For Home news section */
+.media-news{
+	margin-bottom: 10px;
+}
+
+/* Both check in and battle column */
+.battle-column > .battles-container, .check-in-column > .check-in-container{
+	text-align: center;
+}
+
+/* Check in Column */
+.check-in-column > .check-in-container > button, .check-in-column .check-in-container > .replay-upload{
+	width: 300px;
+}
+.check-in-column > .check-in-container > .replay-upload{
+	text-align: left;
+	display: inline-block;
+	vertical-align: middle;
+	padding-bottom: 5px;
+	
+}
+
+/* Battle Column */
+.battle-column > .battles-container > .battle-info{
+	text-align: center;
+	display: inline-block;
+	width: 205px;
+}
+.battle-column > .battles-container > .battle-info > .map-chip-div > .map-name{
+	display: inline-block;
+	padding-right: 10px;
+	margin-right: 10px;
+	border-right: #CAC9C9 1px solid;
+}
+.battle-column > .battles-container > .battle-info > .map-chip-div > .chip-count{
+	background-image:url('../images/home/chip_box.png');
+	font-size: 12px;
+	color: #65ff4a;
+	font-weight: bold;
+	width: 22px;
+	height: 17px;
+	display: inline-block;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	vertical-align: bottom;
+}
+.battle-column > .battles-container > .battle-info > .map-info{
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+.battle-column > .battles-container > .battle-info > .map-info > .info-line > label{
+	margin-right: 5px;
+}
+
+.battle-column > .battles-container > .battle-info > .map-info > .info-line > .battle-type{
+	vertical-align: top;
+	display: inline-block;
+}
+.battle-column > .battles-container > .battle-info > .map-info > .info-line > .battle-type:before{
+	margin-right: 5px;
+	content:url('../images/home/for_province.png') 
+}
+
+/* Payout Column */
+.payout-history-column > .payout-table-container{
+	padding-top: 5px;
+}
+.payout-history-column > .payout-year-selection-container > .highchart-year-selection-container{
+	margin: 0 auto;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	width: 200px;
+}
+
+
+/***************** Hacks and Tools *****************/
+
+/** Makes content inside of the replay upload change styles based on only the parent changing class **/
+.replay-file-error label, .replay-file-error input{
+	color: #a94442;
+}

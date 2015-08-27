@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="services.ntr.pms.dao.LocalClanSettingsDAO">
+
+	<select id="getLocalClanSettings" resultType="LocalClanSettings">
+		SELECT *
+		FROM PMS.LOCALCLANSETTING 
+		WHERE CLANID = #{clanId}
+	</select>
+
+	<update id="updateLocalClanSettings">
+		UPDATE 
+			PMS.LOCALCLANSETTING 
+		SET 
+			BATTLETIMERANGEBEFOREMINUTES = #{battleTimeRangeBeforeMinutes},
+			BATTLETIMERANGEAFTERMINUTES = #{battleTimeRangeAfterMinutes},
+			BATTLEDAYGMTOFFSET = #{battleDayGmtOffset},
+			CALLERAMOUNTPERBATTLE = #{callerAmountPerBattle},
+			PLAYERISBANNEDERROR = #{playerIsBannedError},
+			PLAYERALREADYCHECKEDINERROR = #{playerAlreadyCheckedInError},
+			PLAYERNOTWITHINTIMEFRAMEERROR = #{playerNotWithinTimeFrameError},
+			DEFAULTERROR = #{defaultError}
+		WHERE 
+			CLANID = #{clanId}
+	</update>
+	
+	<insert id="addLocalClanSettings">
+		INSERT INTO PMS.LocalClanSetting 
+			(ClanId) 
+		VALUES (#{clanId})
+	</insert>
+	
+	<delete id="deleteLocalClanSettings">
+		DELETE FROM PMS.LocalClanSetting
+		WHERE ClanId = #{clanId};
+	</delete>
+	
+</mapper>

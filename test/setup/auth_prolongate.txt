@@ -1,0 +1,8 @@
+{
+    "status": "ok",
+    "data": {
+        "access_token": "da2dbad765eacc55a74cf948358979b09ad703af",
+        "account_id": 1001167560,
+        "expires_at": 1406994544
+    }
+}

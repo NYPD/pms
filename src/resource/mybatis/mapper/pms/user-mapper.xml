@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="services.ntr.pms.dao.UserDAO">
+
+	<resultMap id="UserMap" type="User">
+		<association property="role" column="RoleId" javaType="Role" select="getRole"/>
+	</resultMap>
+	
+	<select id="getUser" resultMap="UserMap">
+		SELECT USRR.AccountId, USRR.Nickname, USRR.RoleId
+		FROM PMS.UserRole USRR
+		WHERE USRR.accountId = #{accountId}
+	</select>
+	
+	<select id="getRole" parameterType="int" resultType="Role">
+		SELECT ROLE.RoleId, ROLE.RoleName
+		FROM PMS.role ROLE
+		WHERE ROLE.RoleId = #{RoleId}
+	</select>
+	
+</mapper>

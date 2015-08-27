@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="services.ntr.pms.dao.PayoutDAO">
+
+	<resultMap type="Attendance" id="AttendanceMap">
+		<result column="checkInTime" property="checkInTimeUsingTimestamp"/>
+	</resultMap>
+	
+	<resultMap type="CallerAttendance" id="CallerAttendanceMap">
+		<result column="battleTime" property="battleTimeUsingTimestamp"/>
+	</resultMap>
+	
+	<resultMap type="Payout" id="PayoutMap">
+		<result column="payoutTime" property="payoutTimeUsingTimestamp"/>
+	</resultMap>
+	
+	<resultMap type="TransactionHistory" id="TransactionHistoryMap">
+		<result column="payoutTime" property="payoutTimeUsingTimestamp"/>
+	</resultMap>
+	
+	<select id="getAttendancesNotPayedOut" resultMap="AttendanceMap">
+		SELECT ATTE.* 
+		FROM PMS.ATTENDANCE ATTE
+		LEFT JOIN PMS.ATTENDANCEPAYOUT ATPY ON ATPY.AttendanceId = ATTE.AttendanceId
+		WHERE ATTE.ClanId = #{clanId}
+		AND ATPY.PAYOUTID IS NULL
+	</select>
+	
+	<select id="getPointSummaries" resultType="PointSummary">
+		SELECT ATTE.accountId, COUNT(ATTE.accountId) as points
+		FROM PMS.ATTENDANCE ATTE
+		LEFT JOIN PMS.ATTENDANCEPAYOUT ATPY ON ATPY.AttendanceId = ATTE.AttendanceId
+		WHERE ATTE.ClanId = #{clanId}
+		AND ATPY.PAYOUTID IS NULL
+		GROUP BY ATTE.accountId
+	</select>
+		
+	<select id="getPointSummariesByTimeFrame" resultType="PointSummary">
+		SELECT ATTE.accountId, COUNT(ATTE.accountId) as points
+		FROM PMS.ATTENDANCE ATTE
+		WHERE ATTE.ClanId = #{clanId}
+		AND ATTE.CHECKINTIME &gt;= #{timeFrame.startTimeAsTimestamp}
+		AND ATTE.CHECKINTIME &lt;= #{timeFrame.endTimeAsTimestamp}
+		GROUP BY ATTE.accountId
+	</select>
+	
+	
+	<select id="getCallerAttendancesNotPayedOut" resultMap="CallerAttendanceMap">
+		SELECT CLAT.* 
+		FROM PMS.CALLERATTENDANCE CLAT
+		LEFT JOIN PMS.CALLERPAYOUT CLPY ON CLPY.CallerAttendanceId = CLAT.CallerAttendanceId
+		WHERE CLAT.ClanId = #{clanId}
+		AND CLPY.PAYOUTID IS NULL
+	</select>
+	
+	<select id="getCallerPointSummaries" resultType="PointSummary">
+		SELECT CLAT.accountId, COUNT(CLAT.accountId) as points
+		FROM
+		(
+			SELECT CLAT.accountId, CLAT.ClanId
+			FROM PMS.CALLERATTENDANCE CLAT
+			LEFT JOIN PMS.CALLERPAYOUT CLPY ON CLPY.CallerAttendanceId = CLAT.CallerAttendanceId
+			WHERE CLAT.ClanId = #{clanId}
+			AND CLPY.PAYOUTID IS NULL
+			GROUP BY CLAT.accountId, CLAT.ClanId, CAST(CLAT.BATTLETIME AS DATE)
+		
+		) CLAT
+		GROUP BY CLAT.accountId
+	</select>
+	
+	<select id="getPayoutsByPlayer" resultMap="PayoutMap">
+		SELECT PYOT.*
+		FROM PMS.PAYOUT PYOT
+		LEFT JOIN PMS.ATTENDANCEPAYOUT ATPY ON ATPY.PayoutId = PYOT.PayoutId
+		LEFT JOIN PMS.ATTENDANCE ATTE ON ATTE.AttendanceId = ATPY.AttendanceId
+		WHERE ATTE.ACCOUNTID = #{accountId}
+		
+		UNION
+		
+		SELECT PYOT.*
+		FROM PMS.PAYOUT PYOT
+		LEFT JOIN PMS.INCENTIVEPAYOUT INPY ON INPY.PayoutId = PYOT.PayoutId
+		LEFT JOIN PMS.INCENTIVE INTV ON INTV.IncentiveId = INPY.IncentiveId
+		WHERE INTV.ACCOUNTID = #{accountId}
+		
+		UNION
+		
+		SELECT PYOT.*
+		FROM PMS.PAYOUT PYOT
+		LEFT JOIN PMS.PLAYERBONUSPAYOUT PBPY ON PBPY.PayoutId = PYOT.PayoutId
+		LEFT JOIN PMS.PLAYERBONUS PLBN ON PLBN.playerBonusId = PBPY.playerBonusId
+		WHERE PLBN.ACCOUNTID = #{accountId}
+		
+		UNION
+		
+		SELECT PYOT.*
+		FROM PMS.PAYOUT PYOT
+		LEFT JOIN PMS.CAMPAIGNREWARDPAYOUT CRPY ON CRPY.PayoutId = PYOT.PayoutId
+		WHERE CRPY.ACCOUNTID = #{accountId}	
+		
+		UNION
+		
+		SELECT PYOT.*
+		FROM PMS.PAYOUT PYOT
+		LEFT JOIN PMS.CALLERPAYOUT CLPY ON CLPY.PayoutId = PYOT.PayoutId
+		LEFT JOIN PMS.CALLERATTENDANCE CLAT ON CLAT.CallerAttendanceId = CLPY.CallerAttendanceId
+		WHERE CLAT.ACCOUNTID = #{accountId}
+	</select>
+	
+	<select id="getMonthlyPlayerPayoutSummary" resultType="PayoutMonthSummary">
+		
+		SELECT SUM(Amount) As Amount, Month
+		FROM(
+				SELECT Amount,  Month(PYOT.PayoutTime) as Month
+				FROM PMS.PAYOUT PYOT
+				LEFT JOIN PMS.ATTENDANCEPAYOUT ATPY ON ATPY.PayoutId = PYOT.PayoutId
+				LEFT JOIN PMS.ATTENDANCE ATTE ON ATTE.AttendanceId = ATPY.AttendanceId
+				WHERE ATTE.ACCOUNTID = #{player.accountId} 
+				AND PYOT.PayoutTime &gt;= #{timeFrame.startTimeAsTimestamp}
+				AND PYOT.PayoutTime &lt;= #{timeFrame.endTimeAsTimestamp}
+				
+				UNION
+				
+				SELECT Amount,  Month(PYOT.PayoutTime) as Month
+				FROM PMS.PAYOUT PYOT
+				LEFT JOIN PMS.INCENTIVEPAYOUT INPY ON INPY.PayoutId = PYOT.PayoutId
+				LEFT JOIN PMS.INCENTIVE INTV ON INTV.IncentiveId = INPY.IncentiveId
+				WHERE INTV.ACCOUNTID = #{player.accountId}
+				AND PYOT.PayoutTime &gt;= #{timeFrame.startTimeAsTimestamp}
+				AND PYOT.PayoutTime &lt;= #{timeFrame.endTimeAsTimestamp}
+				
+				UNION
+				
+				SELECT Amount,  Month(PYOT.PayoutTime) as Month
+				FROM PMS.PAYOUT PYOT
+				LEFT JOIN PMS.PLAYERBONUSPAYOUT PBPY ON PBPY.PayoutId = PYOT.PayoutId
+				LEFT JOIN PMS.PLAYERBONUS PLBN ON PLBN.playerBonusId = PBPY.playerBonusId
+				WHERE PLBN.ACCOUNTID = #{player.accountId}
+				AND PYOT.PayoutTime &gt;= #{timeFrame.startTimeAsTimestamp}
+				AND PYOT.PayoutTime &lt;= #{timeFrame.endTimeAsTimestamp}
+				
+				UNION
+				
+				SELECT Amount,  Month(PYOT.PayoutTime) as Month
+				FROM PMS.PAYOUT PYOT
+				LEFT JOIN PMS.CALLERPAYOUT CLPY ON CLPY.PayoutId = PYOT.PayoutId
+				LEFT JOIN PMS.CALLERATTENDANCE CLAT ON CLAT.CallerAttendanceId = CLPY.CallerAttendanceId
+				WHERE CLAT.ACCOUNTID = #{player.accountId}
+				AND PYOT.PayoutTime &gt;= #{timeFrame.startTimeAsTimestamp}
+				AND PYOT.PayoutTime &lt;= #{timeFrame.endTimeAsTimestamp}
+				
+				UNION
+				
+				SELECT Amount,  Month(PYOT.PayoutTime) as Month
+				FROM PMS.PAYOUT PYOT
+				LEFT JOIN PMS.CAMPAIGNREWARDPAYOUT CRPY ON CRPY.PayoutId = PYOT.PayoutId
+				WHERE CRPY.ACCOUNTID = #{player.accountId}
+				AND PYOT.PayoutTime &gt;= #{timeFrame.startTimeAsTimestamp}
+				AND PYOT.PayoutTime &lt;= #{timeFrame.endTimeAsTimestamp}
+			
+		)PayoutMonthlyAmount
+		GROUP BY MONTH
+		
+		ORDER BY MONTH
+		
+	</select>
+	
+	<select id="getTransactionHistory" resultMap="TransactionHistoryMap">
+
+		SELECT TransactionId, SUM(Amount) AS Amount, Type, PayoutTime, PayerAccountId
+		
+		FROM(
+		
+		SELECT ATTN.AccountId, PYOT.Amount, PYOT.TransactionId, PYOT.Type, PYOT.PayoutTime, PYOT.PayerAccountId
+		FROM PMS.PAYOUT PYOT
+		INNER JOIN PMS.TRANSACTION TRAN ON TRAN.TransactionId = PYOT.TransactionId
+		INNER JOIN PMS.ATTENDANCEPAYOUT ATPY ON ATPY.PayoutId = PYOT.PayoutId
+		INNER JOIN PMS.ATTENDANCE ATTN ON ATTN.AttendanceId = ATPY.AttendanceId
+		WHERE TRAN.ClanId = #{clanId}
+		GROUP BY PYOT.PayoutId, TRAN.TransactionId, PYOT.Amount, ATTN.AccountId
+		
+		UNION
+		
+		SELECT CLAT.AccountId, PYOT.Amount, PYOT.TransactionId, PYOT.Type, PYOT.PayoutTime, PYOT.PayerAccountId
+		FROM PMS.PAYOUT PYOT
+		INNER JOIN PMS.TRANSACTION TRAN ON TRAN.TransactionId = PYOT.TransactionId
+		INNER JOIN PMS.CALLERPAYOUT CLPY ON CLPY.PayoutId = PYOT.PayoutId
+		INNER JOIN PMS.CALLERATTENDANCE CLAT ON CLAT.CallerAttendanceId = CLPY.CallerAttendanceId
+		WHERE TRAN.ClanId = #{clanId}
+		GROUP BY PYOT.PayoutId, TRAN.TransactionId, PYOT.Amount, CLAT.AccountId
+		
+		UNION
+				
+		SELECT CRPY.AccountId, PYOT.Amount, PYOT.TransactionId, PYOT.Type, PYOT.PayoutTime, PYOT.PayerAccountId
+		FROM PMS.PAYOUT PYOT
+		INNER JOIN PMS.TRANSACTION TRAN ON TRAN.TransactionId = PYOT.TransactionId
+		INNER JOIN PMS.CAMPAIGNREWARDPAYOUT CRPY ON CRPY.PayoutId = PYOT.PayoutId
+		WHERE TRAN.ClanId = #{clanId}
+		GROUP BY PYOT.PayoutId, TRAN.TransactionId, PYOT.Amount, CRPY.AccountId
+		
+		UNION
+		
+		SELECT PLBN.AccountId, PYOT.Amount, PYOT.TransactionId, PYOT.Type, PYOT.PayoutTime, PYOT.PayerAccountId
+		FROM PMS.PAYOUT PYOT
+		INNER JOIN PMS.TRANSACTION TRAN ON TRAN.TransactionId = PYOT.TransactionId
+		INNER JOIN PMS.PLAYERBONUSPAYOUT PBPY ON PBPY.PayoutId = PYOT.PayoutId
+		INNER JOIN PMS.PLAYERBONUS PLBN ON PLBN.PlayerBonusId = PBPY.PlayerBonusId
+		WHERE TRAN.ClanId = #{clanId}
+		GROUP BY PYOT.PayoutId, TRAN.TransactionId, PYOT.Amount, PLBN.AccountId
+		
+		UNION
+		
+		SELECT INTV.AccountId, PYOT.Amount, PYOT.TransactionId, PYOT.Type, PYOT.PayoutTime, PYOT.PayerAccountId
+		FROM PMS.PAYOUT PYOT
+		INNER JOIN PMS.TRANSACTION TRAN ON TRAN.TransactionId = PYOT.TransactionId
+		INNER JOIN PMS.INCENTIVEPAYOUT INPY ON INPY.PayoutId = PYOT.PayoutId
+		INNER JOIN PMS.INCENTIVE INTV ON INTV.IncentiveId = INPY.IncentiveId
+		WHERE TRAN.ClanId = #{clanId}
+		GROUP BY PYOT.PayoutId, TRAN.TransactionId, PYOT.Amount, INTV.AccountId
+		
+		)TNHS
+		
+		GROUP BY  TransactionId, Type, PayoutTime, PayerAccountId
+		
+	</select>
+	
+	<select id="getTransactionHistoryChartPoints" resultType="TransactionHistoryChartPoint">
+		SELECT 
+			PYOT.Type, Sum(PYOT.Amount) AS Amount
+		FROM 
+			PMS.PAYOUT PYOT
+		LEFT JOIN 
+			PMS.TRANSACTION TRAN ON TRAN.TransactionId = PYOT.TransactionId
+		LEFT JOIN 
+			PMS.ATTENDANCEPAYOUT ATPY ON ATPY.PayoutId = PYOT.PayoutId
+        LEFT JOIN 
+        	PMS.INCENTIVEPAYOUT INPY ON INPY.PayoutId = PYOT.PayoutId
+		LEFT JOIN 
+			PMS.PLAYERBONUSPAYOUT PBPY ON PBPY.PayoutId = PYOT.PayoutId
+		LEFT JOIN 
+			PMS.CALLERPAYOUT CLPY ON CLPY.PayoutId = PYOT.PayoutId
+		LEFT JOIN 
+			PMS.CAMPAIGNREWARDPAYOUT CRPY ON CRPY.PayoutId = PYOT.PayoutId
+		WHERE 
+			TRAN.ClanId = #{clanId}
+		GROUP BY 
+			PYOT.Type
+	</select>
+	
+	<insert id="addTransaction" keyProperty="transactionId" useGeneratedKeys="true" >
+		INSERT INTO PMS.TRANSACTION(CLANID) VALUES (#{clanId});
+	</insert>
+	
+	<insert id="addPayout"  keyProperty="payoutId" useGeneratedKeys="true">
+		INSERT INTO PMS.PAYOUT(TRANSACTIONID, AMOUNT, TYPE, PAYERACCOUNTID, PAYOUTTIME) VALUES (#{transactionId}, #{amount}, #{type}, #{payerAccountId}, #{payoutTimeAsTimestamp});
+	</insert>
+	
+	<insert id="addAttendancePayout">
+		INSERT INTO PMS.ATTENDANCEPAYOUT(ATTENDANCEID, PAYOUTID) VALUES (#{attendanceId}, #{payoutId});
+	</insert>
+	
+	<insert id="addIncentiveCompletion"  keyProperty="incentiveId" useGeneratedKeys="true">
+		INSERT INTO PMS.INCENTIVE(ACCOUNTID, CLANID, TANKUNLOCKEDNAME, TANKUNLOCKEDID) VALUES (#{accountId}, #{clanId}, #{tankUnlockedName}, #{tankUnlockedId});
+	</insert>
+	
+	<insert id="addIncentivePayout">
+		INSERT INTO PMS.INCENTIVEPAYOUT(INCENTIVEID, PAYOUTID) VALUES (#{incentiveId}, #{payoutId});
+	</insert>
+	
+	<insert id="addPlayerBonus"  keyProperty="playerBonusId" useGeneratedKeys="true">
+		INSERT INTO PMS.PLAYERBONUS(ACCOUNTID, CLANID, REASON) VALUES (#{accountId}, #{clanId}, #{reason});
+	</insert>
+	
+	<insert id="addPlayerBonusPayout">
+		INSERT INTO PMS.PLAYERBONUSPAYOUT(PLAYERBONUSID, PAYOUTID) VALUES (#{playerBonusId}, #{payoutId});
+	</insert>
+	
+	<insert id="addCampaignReward"  keyProperty="campaignRewardId" useGeneratedKeys="true">
+		INSERT INTO PMS.CAMPAIGNREWARD(CLANID, STARTTIME, ENDTIME, CAMPAIGNNAME, AMOUNT) VALUES (#{clanId}, #{timeFrame.startTimeAsTimestamp}, #{timeFrame.endTimeAsTimestamp}, #{campaignName}, #{amount});
+	</insert>
+	
+	<insert id="addCampaignRewardPayout">
+		INSERT INTO PMS.CAMPAIGNREWARDPAYOUT(CAMPAIGNREWARDID, PAYOUTID, ACCOUNTID) VALUES (#{campaignRewardId}, #{payoutId}, #{accountId});
+	</insert>
+	
+	<insert id="addCallerPayout">
+		INSERT INTO PMS.CALLERPAYOUT(CALLERATTENDANCEID, PAYOUTID) VALUES (#{callerAttendanceId}, #{payoutId});
+	</insert>
+	
+</mapper>

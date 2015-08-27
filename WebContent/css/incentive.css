@@ -1,0 +1,15 @@
+/* Global Overwrites *****************************************************************************/
+.table > tbody > tr > td {
+	vertical-align: middle;
+}
+
+/* Main Content **********************************************************************************/
+#incentive-summary-table .tank-unlocker {
+	float: left;
+}
+#incentive-summary-table .tank-unlocker:not(:first-child) {
+	margin-left: 10px;
+}
+.tank-icon {
+	margin-right: -35px;
+}

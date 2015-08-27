@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="services.ntr.pms.dao.EventDAO">
+
+	<resultMap id="EventMap" type="Event" >
+		<result column="StartTime" property="startTimeAsTimestamp"/>
+	</resultMap>
+	
+	<insert id="addEvent" keyProperty="eventId" useGeneratedKeys="true">
+		INSERT INTO PMS.EVENT (ClanId,Type,StartTime,ImageUrl)
+		VALUES(#{clanId},#{type},#{startTimeAsTimestamp},#{imageUrl})
+	</insert>
+
+	<select id="getUpcomingEvents" resultMap="EventMap">
+		SELECT EVNT.* 
+		FROM PMS.EVENT EVNT
+		WHERE EVNT.CLANID = #{clanId}
+		AND EVNT.STARTTIME &gt;= CURRENT_TIMESTAMP<!-- TODO this should be end time -->
+	</select>
+	<select id="getPastEvents" resultMap="EventMap">
+		SELECT EVNT.* 
+		FROM PMS.EVENT EVNT
+		WHERE EVNT.CLANID = #{clanId}
+		AND EVNT.STARTTIME &lt;= CURRENT_TIMESTAMP<!-- TODO this should be end time -->
+	</select>
+	<select id="getEventsByTimeFrame" resultMap="EventMap">
+		SELECT EVNT.* 
+		FROM PMS.EVENT EVNT
+		WHERE EVNT.CLANID = #{clanId}
+		AND EVNT.STARTTIME &gt;= #{timeFrame.startTimeAsTimestamp}
+		AND EVNT.STARTTIME &lt;= #{timeFrame.endTimeAsTimestamp}<!-- TODO this should be end time -->
+	</select>
+	<select id="getClanEventById" resultMap="EventMap">
+		SELECT EVNT.* 
+		FROM PMS.EVENT EVNT
+		WHERE EVNT.CLANID = #{clanId}
+		AND EVNT.EVENTID = #{eventId}
+	</select>
+	<update id="updateClanEvent">
+		UPDATE PMS.EVENT
+		SET TYPE= #{type},
+			STARTTIME = #{startTimeAsTimestamp},
+			IMAGEURL = #{imageUrl}
+		WHERE EVENTID = #{eventId}
+		AND CLANID = #{clanId}
+	</update>
+	
+	<delete id="deleteClanEvent">
+		DELETE FROM PMS.EVENT
+		WHERE EVENTID = #{eventId}
+		AND CLANID = #{clanId}
+	</delete>
+</mapper>

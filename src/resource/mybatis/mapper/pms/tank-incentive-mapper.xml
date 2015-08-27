@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="services.ntr.pms.dao.TankIncentiveDAO">
+
+	<resultMap id="IncentiveTankDetailMap" type="IncentiveTankDetail">
+		<result column="TANKUNLOCKEDID" property="tankUnlockedId"/>
+		<association property="tankUnlockerAccountIds" column="{tankUnlockedId=TANKUNLOCKEDID,clanId=CLANID}" select="getTankUnlockerAccountIds"/>
+	</resultMap>
+	
+	<resultMap id="IncentiveTankMap" type="IncentiveTank">
+		<result column="TANKUNLOCKEDID" property="tankUnlockedId"/>
+		<association property="tankUnlockerAccountIds" column="{tankUnlockedId=TANKUNLOCKEDID,clanId=CLANID}" select="getTankUnlockerAccountIds"/>
+	</resultMap>
+	
+	<select id="getClanIncentiveTankDetails" resultMap="IncentiveTankDetailMap">
+		SELECT 
+			INCN.CLANID, INCN.TANKUNLOCKEDNAME, INCN.TANKUNLOCKEDID, SUM(PYOT.Amount) AS TotalGoldGiven
+		FROM  
+			PMS.INCENTIVE INCN
+		LEFT JOIN
+			PMS.INCENTIVEPAYOUT INPY ON INPY.IncentiveID = INCN.IncentiveID
+		LEFT JOIN
+			PMS.PAYOUT PYOT ON PYOT.PayoutId = INPY.PayoutId
+		WHERE 
+			INCN.CLANID = #{clanId}
+		GROUP BY 
+			INCN.TANKUNLOCKEDID, INCN.CLANID, INCN.TANKUNLOCKEDNAME
+	</select>
+	
+	<select id="getTankUnlockerAccountIds" resultType="Long">
+		SELECT
+			DISTINCT INCN.ACCOUNTID
+		FROM  
+			PMS.INCENTIVE INCN
+		WHERE
+			INCN.TANKUNLOCKEDID = #{tankUnlockedId}
+		AND
+			INCN.CLANID = #{clanId}
+	</select>
+	
+	<select id="getTopIncentivePlayersByClan" resultType="IncentivePlayer">
+		SELECT 
+			INCN.ACCOUNTID, COUNT(INCN.IncentiveId) TanksUnlocked, SUM(PYOT.Amount) AS TotalGoldAmount
+		FROM  
+			PMS.INCENTIVE INCN
+		LEFT JOIN
+			PMS.INCENTIVEPAYOUT INPY ON INPY.IncentiveID = INCN.IncentiveID
+		LEFT JOIN
+			PMS.PAYOUT PYOT ON PYOT.PayoutId = INPY.PayoutId
+		WHERE 
+			INCN.CLANID = #{clanId}
+		GROUP BY 
+			INCN.ACCOUNTID
+		ORDER BY
+			TanksUnlocked DESC
+	</select>
+	
+	<select id="getTopTanksUnlockedByClan" resultMap="IncentiveTankMap">
+		SELECT 
+			INCN.TANKUNLOCKEDID, INCN.TANKUNLOCKEDNAME, INCN.CLANID, COUNT(INCN.TANKUNLOCKEDID) TimesUnlocked
+		FROM  
+			PMS.INCENTIVE INCN
+		WHERE 
+			INCN.CLANID = #{clanId}
+		GROUP BY 
+			INCN.TANKUNLOCKEDID, INCN.TANKUNLOCKEDNAME, INCN.CLANID
+		ORDER BY
+			TimesUnlocked DESC
+	</select>
+	
+	<select id="getTankIncentiveDefaultPayouts" resultType="TankIncentiveDefaultPayout" >
+		SELECT
+			TIDP.tankIncentiveDefaultPayoutId, TIDP.TANKID, TIDP.CLANID, TIDP.AMOUNT
+		FROM 
+			PMS.TANKINCENTIVEDEFAULTPAYOUT TIDP
+		WHERE
+			TIDP.CLANID = #{clanId}
+	</select>
+	
+	<insert id="insertTankIncentiveDefaultPayouts">
+		INSERT INTO
+			PMS.TANKINCENTIVEDEFAULTPAYOUT (TankId, ClanId, Amount)
+		VALUES
+			<foreach collection="tankIncentiveDefaultPayouts" item="tankIncentiveDefaultPayout" separator=",">
+				(#{tankIncentiveDefaultPayout.tankId}, #{tankIncentiveDefaultPayout.clanId}, #{tankIncentiveDefaultPayout.amount})
+			</foreach>
+	</insert>
+	
+	<update id="updateTankIncentiveDefaultPayouts">
+		<foreach collection="tankIncentiveDefaultPayouts" item="tankIncentiveDefaultPayout" separator=";">
+			UPDATE
+				PMS.TANKINCENTIVEDEFAULTPAYOUT
+			SET
+				Amount = #{tankIncentiveDefaultPayout.amount}
+				
+			WHERE TankId = #{tankIncentiveDefaultPayout.tankId} AND ClanId = #{tankIncentiveDefaultPayout.clanId}
+		</foreach>
+	</update>
+	
+</mapper>

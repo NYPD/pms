@@ -1,0 +1,18 @@
+{
+    "status": "ok",
+    "count": 2,
+    "data": [
+        {
+            "map_id": "globalmap",
+            "state": "active",
+            "map_url": "http://worldoftanks.com/clanwars/maps/globalmap",
+            "type": "normal"
+        },
+        {
+            "map_id": "eventmap",
+            "state": "unavailable",
+            "map_url": "http://worldoftanks.com/clanwars/maps/eventmap",
+            "type": "event"
+        }
+    ]
+}

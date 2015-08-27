@@ -1,0 +1,96 @@
+{
+    "status": "ok",
+    "count": 6,
+    "data": {
+        "US_24": {
+            "arena_i18n": "South Coast",
+            "name": "American Riviera",
+            "arena_id": 32,
+            "prime_time": 1404266403,
+            "attacked": false,
+            "private": {
+                "capital": true
+            },
+            "revenue": 720,
+            "occupancy_time": 37,
+            "combats_running": false,
+            "province_id": "US_24",
+            "type": "normal"
+        },
+        "US_25": {
+            "arena_i18n": "Mountain Pass",
+            "name": "Yosemite National Park",
+            "arena_id": 15,
+            "prime_time": 1404266403,
+            "attacked": false,
+            "private": {
+                "capital": false
+            },
+            "revenue": 600,
+            "occupancy_time": 35,
+            "combats_running": false,
+            "province_id": "US_25",
+            "type": "start"
+        },
+        "US_26": {
+            "arena_i18n": "Himmelsdorf",
+            "name": "Los Angeles, California",
+            "arena_id": 3,
+            "prime_time": 1404266403,
+            "attacked": false,
+            "private": {
+                "capital": false
+            },
+            "revenue": 4080,
+            "occupancy_time": 38,
+            "combats_running": false,
+            "province_id": "US_26",
+            "type": "gold"
+        },
+        "US_27": {
+            "arena_i18n": "Ensk",
+            "name": "San Diego, California",
+            "arena_id": 6,
+            "prime_time": 1404266403,
+            "attacked": false,
+            "private": {
+                "capital": false
+            },
+            "revenue": 120,
+            "occupancy_time": 39,
+            "combats_running": false,
+            "province_id": "US_27",
+            "type": "start"
+        },
+        "US_22": {
+            "arena_i18n": "Karelia",
+            "name": "Sierra Nevada Mountains",
+            "arena_id": 1,
+            "prime_time": 1404266403,
+            "attacked": false,
+            "private": {
+                "capital": false
+            },
+            "revenue": 960,
+            "occupancy_time": 36,
+            "combats_running": false,
+            "province_id": "US_22",
+            "type": "normal"
+        },
+        "US_23": {
+            "arena_i18n": "Serene Coast",
+            "name": "San Francisco, California",
+            "arena_id": 49,
+            "prime_time": 1404266403,
+            "attacked": false,
+            "private": {
+                "capital": false
+            },
+            "revenue": 3600,
+            "occupancy_time": 36,
+            "combats_running": false,
+            "province_id": "US_23",
+            "type": "gold"
+        }
+    }
+}

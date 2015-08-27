@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="services.ntr.pms.dao.CallerAttendanceDAO">
+
+	<select id="getCallerAttendanceHistory" resultType="AttendanceHistory">
+		SELECT AccountId, COUNT(AccountId) as Points 
+		FROM 
+		(
+			SELECT CLAT.accountId, CLAT.ClanId
+			FROM PMS.CALLERATTENDANCE CLAT
+			WHERE CLAT.CLANID = #{clanId}
+			AND CLAT.BATTLETIME &gt;= #{timeFrame.startTimeAsTimestamp}
+			AND CLAT.BATTLETIME &lt;= #{timeFrame.endTimeAsTimestamp}
+			GROUP BY CLAT.accountId, CLAT.ClanId, CAST(CLAT.BATTLETIME AS DATE)
+		) CLAT
+		GROUP BY AccountId
+	</select>
+	
+	<select id="getCallerMapFrequencies" resultType="CallerMapFrequency">
+		SELECT AccountId, MapName, COUNT(AccountId) as TimesCalled 
+		FROM PMS.CALLERATTENDANCE
+		WHERE CLANID = #{clanId}
+		GROUP BY AccountId, MapName
+	</select>
+	
+	<insert id="addCallerAttendance" keyProperty="callerAttendanceId" useGeneratedKeys="true">
+		INSERT INTO PMS.CALLERATTENDANCE (ACCOUNTID,CLANID,MAPNAME)
+		VALUES(#{accountId},#{clanId},#{mapName})
+	</insert>
+
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="services.ntr.pms.dao.PlayerAttendanceDAO">
+
+	<resultMap type="Attendance" id="AttendanceMap">
+		<result column="checkInTime" property="checkInTimeUsingTimestamp"/>
+	</resultMap>
+	
+
+	<select id="getClanAttendanceHistory" resultType="AttendanceHistory">
+		SELECT AccountId, COUNT(AccountId) as Points 
+		FROM PMS.attendance
+		WHERE clanId = #{clanId}
+		AND CHECKINTIME &gt;= #{timeFrame.startTimeAsTimestamp}
+		AND CHECKINTIME &lt;= #{timeFrame.endTimeAsTimestamp}
+		GROUP BY AccountId
+	</select>
+	
+	<select id="getAttendancesForPlayer" resultMap="AttendanceMap">
+		SELECT *
+		FROM pms.attendance 
+		WHERE AccountId = #{playerAccountId}
+		AND CHECKINTIME &gt;= #{timeFrame.startTimeAsTimestamp}
+		AND CHECKINTIME &lt;= #{timeFrame.endTimeAsTimestamp}
+	</select>
+	
+	<insert id="addAttendanceWithCheckIn" keyProperty="attendanceId" useGeneratedKeys="true">
+		INSERT INTO PMS.ATTENDANCE (ACCOUNTID,CLANID, CHECKINTIME)
+		VALUES(#{accountId},#{clanId}, #{checkInTimeAsTimeStamp})
+	</insert>
+	
+	<insert id="addAttendance" keyProperty="attendanceId" useGeneratedKeys="true">
+		INSERT INTO PMS.ATTENDANCE (ACCOUNTID,CLANID)
+		VALUES(#{accountId},#{clanId})
+	</insert>
+
+	
+</mapper>

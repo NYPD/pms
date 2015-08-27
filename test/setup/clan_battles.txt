@@ -1,0 +1,32 @@
+{
+    "status": "ok",
+    "count": 1,
+    "meta": {
+        "count": 1
+    },
+    "data": {
+        "1000007315": [
+            {
+                "provinces_i18n": [
+                    {
+                        "name_i18n": "Cuba",
+                        "province_id": "CU_01"
+                    }
+                ],
+                "provinces": [
+                    "CU_01"
+                ],
+                "started": true,
+                "private": null,
+                "time": 1427151603,
+                "arenas": [
+                    {
+                        "name_i18n": "Ensk",
+                        "arena_id": "06_ensk"
+                    }
+                ],
+                "type": "landing"
+            }
+        ]
+    }
+}

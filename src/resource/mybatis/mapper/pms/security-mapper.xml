@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="services.ntr.pms.dao.SecurityDAO">
+	
+	<resultMap id="UserMap" type="User">
+		<association property="role" column="RoleId" javaType="Role" select="getRole"/>
+	</resultMap>
+	
+	<select id="getAllowedClan" resultType="AllowedClan">
+		SELECT AllowedClanId, ClanId
+		FROM PMS.allowedclan
+		WHERE clanId = #{clanId}
+	</select>
+	
+	<select id="getRole" parameterType="int" resultType="Role">
+		SELECT ROLE.RoleId, ROLE.RoleName
+		FROM PMS.role ROLE
+		WHERE ROLE.RoleId = #{RoleId}
+	</select>
+	
+	<select id="getAllRoles" resultType="Role">
+		SELECT ROLE.RoleId, ROLE.RoleName
+		FROM PMS.role ROLE
+		ORDER BY ROLE.RoleName ASC
+	</select>
+	
+	<select id="getAllAdmins" resultMap="UserMap">
+		SELECT USRR.AccountId, USRR.Nickname, USRR.RoleId
+		FROM PMS.UserRole USRR 
+	</select>
+	
+	<select id="getAllAllowedClans" resultType="AllowedClan">
+		SELECT AllowedClanId, ClanId, ClanName
+		FROM PMS.AllowedClan
+	</select>
+
+	<insert id="addAdmin">
+		INSERT INTO PMS.UserRole 
+				(AccountId, RoleId, Nickname) 
+		VALUES 
+				(#{accountId},#{role.roleId},#{nickname});
+	</insert>
+	
+	<insert id="addAllowedClan" keyProperty="allowedClanId" useGeneratedKeys="true">
+		INSERT INTO PMS.AllowedClan
+				(ClanId, ClanName) 
+		VALUES 
+				(#{clanId}, #{clanName});
+	</insert>
+	
+	<update id="editAdmin">
+		UPDATE PMS.UserRole
+		SET RoleId = #{role.roleId}
+		WHERE AccountId = #{accountId}
+	</update>
+	
+	<delete id="deleteAdmin">
+		DELETE FROM PMS.UserRole
+		WHERE AccountId = #{accountId}
+	</delete>
+	
+	<delete id="deleteClan">
+		DELETE FROM PMS.AllowedClan
+		WHERE ClanId = #{clanId}
+	</delete>
+
+</mapper>

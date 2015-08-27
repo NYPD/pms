@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="services.ntr.pms.dao.NewsCarouselDAO">
+
+	<select id="getClanNews" resultType="CarouselNews">
+		Select NWCS.*
+		FROM PMS.NEWSCAROUSEL NWCS
+		WHERE (NWCS.CLANID = #{clanId} OR NWCS.GLOBAL = true)
+	</select>
+	
+	<select id="getActiveClanNews" resultType="CarouselNews">
+		Select NWCS.*
+		FROM PMS.NEWSCAROUSEL NWCS
+		WHERE (NWCS.CLANID = #{clanId} OR NWCS.GLOBAL = true)
+		AND NWCS.ACTIVE = true
+	</select>
+	
+	<select id="getClanNewsById" resultType="CarouselNews">
+		Select NWCS.*
+		FROM PMS.NEWSCAROUSEL NWCS
+		WHERE NWCS.NEWSCAROUSELID = #{newsCarouselId}
+		AND (NWCS.CLANID = #{clanId} OR NWCS.GLOBAL = true)
+	</select>
+	
+	<select id="getNewsById" resultType="CarouselNews">
+		Select NWCS.*
+		FROM PMS.NEWSCAROUSEL NWCS
+		WHERE NWCS.NEWSCAROUSELID = #{newsCarouselId}
+	</select>
+	
+	<update id="updateNews">
+		UPDATE PMS.NEWSCAROUSEL
+		SET CLANID = #{clanId}, 
+			CREATEDBYACCOUNTID = #{createdByAccountId}, 
+			MODIFIEDBYACCOUNTID = #{modifiedByAccountId}, 
+			TITLE = #{title}, 
+			TEXT = #{text}, 
+			SMALLSCREENONLYTEXT = #{smallScreenOnlyText},
+			LARGEBANNERURL = #{largeBannerUrl}, 
+			MEDIUMBANNERURL = #{mediumBannerUrl}, 
+			SMALLBANNERURL = #{smallBannerUrl}, 
+			ICONIMAGEURL = #{iconImageUrl}, 
+			BANNERBACKGROUNDCOLOR = #{bannerBackgroundColor}, 
+			BANNERTEXTCOLOR = #{bannerTextColor}, 
+			GLOBAL = #{global}, 
+			ACTIVE = #{active}
+		WHERE NEWSCAROUSELID = #{newsCarouselId}
+	</update>
+	
+	<insert id="addNews" keyProperty="newsCarouselId" useGeneratedKeys="true">
+		INSERT INTO PMS.NEWSCAROUSEL(CLANID, CREATEDBYACCOUNTID, MODIFIEDBYACCOUNTID, TITLE, TEXT, SMALLSCREENONLYTEXT, LARGEBANNERURL, MEDIUMBANNERURL, SMALLBANNERURL, ICONIMAGEURL, BANNERBACKGROUNDCOLOR, BANNERTEXTCOLOR, GLOBAL, ACTIVE) 
+		VALUES (#{clanId}, #{createdByAccountId}, #{modifiedByAccountId}, #{title}, #{text}, #{smallScreenOnlyText}, #{largeBannerUrl}, #{mediumBannerUrl}, #{smallBannerUrl}, #{iconImageUrl}, #{bannerBackgroundColor}, #{bannerTextColor}, #{global}, #{active});
+	</insert>
+	
+	<delete id="removeNews">
+		DELETE FROM PMS.NEWSCAROUSEL
+		WHERE NEWSCAROUSELID = #{newsCarouselId}
+	</delete>
+</mapper>

@@ -1,0 +1,12 @@
+<Context>
+  		<Resource name="jdbc/ds_pms" 
+  			auth="Container" 
+  			type="javax.sql.DataSource"
+        	maxActive="50" 
+        	maxIdle="30" 
+        	maxWait="10000"
+            username="temp" 
+            password="temp" 
+            driverClassName="com.mysql.jdbc.Driver"
+            url="jdbc:mysql://casa.blazeitalldayerrydaypassthedoritosanddothedewbro.com:3306/pms?allowMultiQueries=true"/>
+</Context>

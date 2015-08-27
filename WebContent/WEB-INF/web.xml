@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	id="WebApp_ID" version="3.0">
+  
+		<display-name>Payment Management System</display-name>
+
+	    <!-- *********************************** Servlets *********************************** -->
+		<servlet>
+			<servlet-name>Dispatcher</servlet-name>
+			<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+			<init-param>
+				<param-name>contextClass</param-name>
+				<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+			</init-param>
+			<init-param>
+				<param-name>contextConfigLocation</param-name>
+				<param-value>services.ntr.pms.configuration.WebConfiguration</param-value>
+			</init-param>
+			<init-param>
+	        	<param-name>spring.profiles.active</param-name>
+	        	<param-value>PRODUCTION</param-value>
+	    	</init-param>
+			<load-on-startup>1</load-on-startup>
+		</servlet>
+		
+		<servlet-mapping>
+			<servlet-name>Dispatcher</servlet-name>
+			<url-pattern>/app/*</url-pattern>
+			<url-pattern>/entry/*</url-pattern>
+			<url-pattern>/error/*</url-pattern>
+		</servlet-mapping>
+		
+		<servlet>
+    		<servlet-name>ApplicationEntry</servlet-name>
+    		<servlet-class>services.ntr.pms.servlet.ApplicationEntryServlet</servlet-class>
+  		</servlet>
+  		
+		<servlet-mapping>
+    		<servlet-name>ApplicationEntry</servlet-name>
+    		<url-pattern>/entry/ApplicationEntry</url-pattern>
+  		</servlet-mapping>
+  		
+  		<servlet>
+    		<servlet-name>LogoutServlet</servlet-name>
+    		<servlet-class>services.ntr.pms.servlet.LogoutServlet</servlet-class>
+  		</servlet>
+		
+		<!-- *********************************** Filters *********************************** -->
+		<filter>
+    		<filter-name>SessionValidationFilter</filter-name>
+    		<filter-class>services.ntr.pms.filter.SessionValidationFilter</filter-class>
+  		</filter>
+  		
+  		<filter-mapping>
+   			<filter-name>SessionValidationFilter</filter-name>
+    		<url-pattern>/app/*</url-pattern>
+  		</filter-mapping>
+  		
+  		<!-- *********************************** Welcome File *********************************** -->
+  		<welcome-file-list>
+  			<welcome-file>entry/ApplicationEntry</welcome-file>
+  		</welcome-file-list>
+  		
+  		<!-- *********************************** Error Pages *********************************** -->
+  		<error-page>
+    		<error-code>404</error-code>
+    		<location>/error/404</location><!-- Custom 404 Error Page -->
+		</error-page> 
+		
+		<error-page>
+    		<location>/error/general-error</location><!-- General HTTP Error Page -->
+		</error-page>
+		
+		<!-- *********************************** Resources *********************************** -->
+		<resource-ref>
+			<description>PMS Datasource</description>
+			<res-ref-name>jdbc/ds_pms</res-ref-name>
+			<res-type>javax.sql.DataSource</res-type>
+			<res-auth>Container</res-auth>
+			<res-sharing-scope>Unshareable</res-sharing-scope>
+  		</resource-ref>
+
+</web-app>

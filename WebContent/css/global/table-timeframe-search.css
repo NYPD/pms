@@ -1,0 +1,39 @@
+/***************** Media Queries *****************/
+@media(max-width:767px){
+	.standard-timeframe-search-form-container > .standard-date-picker-container, .standard-timeframe-search-form-container > .search-button-container{
+		padding-top: 10px;
+	}
+}
+@media(min-width:768px){
+	.standard-timeframe-search-form-container > .btn-radio-container{
+		margin-right: 10px;
+	}
+	.standard-timeframe-search-form-container > .btn-radio-container{
+		display: inline-block;
+		vertical-align: middle;
+	}
+}
+
+/***************** Main Content *****************/
+.standard-timeframe-search-form-container{
+	text-align: center;
+	padding-top: 10px;
+	margin-bottom: 15px;
+}
+.standard-timeframe-search-form-container > .standard-date-picker-container{
+	width: 160px;
+	margin: 0 auto;
+}
+.standard-timeframe-search-form-container > .standard-date-picker-container > .date > input{
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+.standard-timeframe-search-form-container > .standard-date-picker-container, .standard-timeframe-search-form-container > .search-button-container{
+	display: inline-block;
+	vertical-align: middle;
+}
+.standard-timeframe-search-form-container > .standard-date-picker-container, .standard-timeframe-search-form-container > .search-button-container > button{
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+	margin-left: -5px;
+}

@@ -1,0 +1,574 @@
+{
+    "status": "ok",
+    "count": 1,
+    "meta": {
+        "count": 1
+    },
+    "data": {
+        "1000007315": {
+            "leader_id": 1000122895,
+            "color": "#F95C01",
+            "updated_at": 1430214962,
+            "private": null,
+            "tag": "NTR",
+            "members_count": 75,
+            "description_html": "<p>Elitist /vg/ clan.\r\n<br/>Want to join?\r\n<br/>Do you have a 55% or higher w/l? How about 1600+ global WN7?\r\n<br/>Do you own 2 tier 10 tonks or artillery?\r\n<br/>Go bother Overlord_Prime or Apparent\r\n</p><p>\r\n<br/>Casual clan: <a href=\"http://worldoftanks.com/community/clans/1000008112-IMPLY/\" target=\"_blank\">IMPLY</a>\r\n<br/><a href=\"http://worldoftanks.com/community/clans/1000017938/\" target=\"_blank\">LEWD</a>\r\n</p><p>\r\n<br/>Teamspeak: ts.ntr.services\r\n<br/>If you&#39;re here for diplomacy, Zazie\r\n</p><p>\r\n<br/>nyaandere is a diplomat\r\n</p><p>\r\n<br/>YOU STILL PLAY THIS GAME?\r\n</p><p>\r\n<br/>AYY LMAO\n</p>",
+            "creator_id": 1000122895,
+            "leader_name": "Zazie",
+            "emblems": {
+                "x32": {
+                    "portal": "http://na.wargaming.net/clans/media/clans/emblems/cl_315/1000007315/emblem_32x32.png"
+                },
+                "x24": {
+                    "portal": "http://na.wargaming.net/clans/media/clans/emblems/cl_315/1000007315/emblem_24x24.png"
+                },
+                "x256": {
+                    "wowp": "http://na.wargaming.net/clans/media/clans/emblems/cl_315/1000007315/emblem_256x256.png"
+                },
+                "x64": {
+                    "wot": "http://na.wargaming.net/clans/media/clans/emblems/cl_315/1000007315/emblem_64x64_tank.png",
+                    "portal": "http://na.wargaming.net/clans/media/clans/emblems/cl_315/1000007315/emblem_64x64.png"
+                },
+                "x128": {}
+            },
+            "clan_id": 1000007315,
+            "renamed_at": 0,
+            "old_tag": "",
+            "description": "Elitist /vg/ clan.\r\nWant to join?\r\nDo you have a 55% or higher w/l? How about 1600+ global WN7?\r\nDo you own 2 tier 10 tonks or artillery?\r\nGo bother Overlord_Prime or Apparent\r\n\r\nCasual clan: \"IMPLY\":http://worldoftanks.com/community/clans/1000008112-IMPLY/\r\n\"LEWD\":http://worldoftanks.com/community/clans/1000017938/\r\n\r\nTeamspeak: ts.ntr.services\r\nIf you're here for diplomacy, Zazie\r\n\r\nnyaandere is a diplomat\r\n\r\nYOU STILL PLAY THIS GAME?\r\n\r\nAYY LMAO",
+            "members": [
+                {
+                    "role": "executive_officer",
+                    "role_i18n": "Executive Officer",
+                    "joined_at": 1357250344,
+                    "account_id": 1000002830,
+                    "account_name": "OhSlowpoke"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1361423687,
+                    "account_id": 1000009351,
+                    "account_name": "Khorney"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1375551217,
+                    "account_id": 1000011515,
+                    "account_name": "Firespray"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1387130682,
+                    "account_id": 1000023548,
+                    "account_name": "Ogopogo"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1389760163,
+                    "account_id": 1000037232,
+                    "account_name": "AFloppyGiraffe"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1382675042,
+                    "account_id": 1000076262,
+                    "account_name": "Jelan"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1387424779,
+                    "account_id": 1000077097,
+                    "account_name": "StarJackal"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1376108905,
+                    "account_id": 1000096192,
+                    "account_name": "TPSDude"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1385264010,
+                    "account_id": 1000105652,
+                    "account_name": "flamingpanda"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1382591922,
+                    "account_id": 1000119635,
+                    "account_name": "SpetsnazAgent"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1400114666,
+                    "account_id": 1000122596,
+                    "account_name": "Scrubbing_Pubbles"
+                },
+                {
+                    "role": "commander",
+                    "role_i18n": "Commander",
+                    "joined_at": 1368591857,
+                    "account_id": 1000122895,
+                    "account_name": "Zazie"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1360896491,
+                    "account_id": 1000148412,
+                    "account_name": "Haywire"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1412207114,
+                    "account_id": 1000167126,
+                    "account_name": "kail_lantis"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1363666940,
+                    "account_id": 1000185772,
+                    "account_name": "Aitakatta"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1371513001,
+                    "account_id": 1000185904,
+                    "account_name": "Bankotsu09"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1383036030,
+                    "account_id": 1000195645,
+                    "account_name": "nakima"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1370309840,
+                    "account_id": 1000209044,
+                    "account_name": "Encoder"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1366750373,
+                    "account_id": 1000211023,
+                    "account_name": "Bortaz"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1362714501,
+                    "account_id": 1000211109,
+                    "account_name": "Erichkruger"
+                },
+                {
+                    "role": "reservist",
+                    "role_i18n": "Reservist",
+                    "joined_at": 1421822994,
+                    "account_id": 1000264506,
+                    "account_name": "nogoodnames8"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1378784283,
+                    "account_id": 1000265251,
+                    "account_name": "aquabat"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1357833415,
+                    "account_id": 1000275873,
+                    "account_name": "Morriak"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1357448845,
+                    "account_id": 1000393556,
+                    "account_name": "sixrocket"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1383001862,
+                    "account_id": 1000505095,
+                    "account_name": "Wiseman400"
+                },
+                {
+                    "role": "recruit",
+                    "role_i18n": "Recruit",
+                    "joined_at": 1417764556,
+                    "account_id": 1000519964,
+                    "account_name": "Detroct"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1359317893,
+                    "account_id": 1000597176,
+                    "account_name": "IrishNole"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1403254331,
+                    "account_id": 1000618820,
+                    "account_name": "Shredder91"
+                },
+                {
+                    "role": "executive_officer",
+                    "role_i18n": "Executive Officer",
+                    "joined_at": 1383009471,
+                    "account_id": 1000658554,
+                    "account_name": "Randgris"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1395959279,
+                    "account_id": 1000682007,
+                    "account_name": "PurpleGuy"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1362770226,
+                    "account_id": 1000698929,
+                    "account_name": "Abrach"
+                },
+                {
+                    "role": "recruit",
+                    "role_i18n": "Recruit",
+                    "joined_at": 1416556881,
+                    "account_id": 1000739095,
+                    "account_name": "AGK"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1387507479,
+                    "account_id": 1000782914,
+                    "account_name": "kriegsmaster17"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1359130711,
+                    "account_id": 1001023352,
+                    "account_name": "xXx_YOLO_4_2_0_SWAG_xXx"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1382498563,
+                    "account_id": 1001029484,
+                    "account_name": "Shogoll"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1385257488,
+                    "account_id": 1001034367,
+                    "account_name": "Liebestod"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1405921167,
+                    "account_id": 1001040336,
+                    "account_name": "Lawnchair"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1378572403,
+                    "account_id": 1001041299,
+                    "account_name": "berzerk"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1359748387,
+                    "account_id": 1001108118,
+                    "account_name": "Biastahl"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1364339687,
+                    "account_id": 1001127312,
+                    "account_name": "Gorrek"
+                },
+                {
+                    "role": "executive_officer",
+                    "role_i18n": "Executive Officer",
+                    "joined_at": 1368503746,
+                    "account_id": 1001167560,
+                    "account_name": "NYPD"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1413939596,
+                    "account_id": 1001349892,
+                    "account_name": "Chi_Z"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1363363320,
+                    "account_id": 1001387487,
+                    "account_name": "Methox"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1357507605,
+                    "account_id": 1001387898,
+                    "account_name": "blahblah12321"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1358441206,
+                    "account_id": 1001417667,
+                    "account_name": "darkroom0716"
+                },
+                {
+                    "role": "recruit",
+                    "role_i18n": "Recruit",
+                    "joined_at": 1428118189,
+                    "account_id": 1001470194,
+                    "account_name": "Catastrophe1"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1362611902,
+                    "account_id": 1001619820,
+                    "account_name": "Dunning_Kruger_Effect"
+                },
+                {
+                    "role": "private",
+                    "role_i18n": "Private",
+                    "joined_at": 1414462830,
+                    "account_id": 1001733036,
+                    "account_name": "Ecko12"
+                },
+                {
+                    "role": "executive_officer",
+                    "role_i18n": "Executive Officer",
+                    "joined_at": 1357207718,
+                    "account_id": 1001773895,
+                    "account_name": "Apparent"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1410750663,
+                    "account_id": 1001876908,
+                    "account_name": "admiraldoug"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1370746703,
+                    "account_id": 1001906178,
+                    "account_name": "Xsingular"
+                },
+                {
+                    "role": "combat_officer",
+                    "role_i18n": "Combat Officer",
+                    "joined_at": 1357437283,
+                    "account_id": 1001932512,
+                    "account_name": "Durasteel"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1359348679,
+                    "account_id": 1002026862,
+                    "account_name": "Pinkerdoodle"
+                },
+                {
+                    "role": "recruit",
+                    "role_i18n": "Recruit",
+                    "joined_at": 1415675300,
+                    "account_id": 1002076684,
+                    "account_name": "TermsOfService"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1357452861,
+                    "account_id": 1002226195,
+                    "account_name": "GavinCapacitor"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1413259025,
+                    "account_id": 1002229323,
+                    "account_name": "Wax11"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1360715045,
+                    "account_id": 1002245250,
+                    "account_name": "KampfyKouch"
+                },
+                {
+                    "role": "recruit",
+                    "role_i18n": "Recruit",
+                    "joined_at": 1422137232,
+                    "account_id": 1002249617,
+                    "account_name": "Tyrade"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1383043920,
+                    "account_id": 1002283849,
+                    "account_name": "a_Friendly"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1364438857,
+                    "account_id": 1002341454,
+                    "account_name": "Emperor_IV"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1365806063,
+                    "account_id": 1002396510,
+                    "account_name": "Foxton"
+                },
+                {
+                    "role": "executive_officer",
+                    "role_i18n": "Executive Officer",
+                    "joined_at": 1389758476,
+                    "account_id": 1002418157,
+                    "account_name": "Summers1000"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1366068883,
+                    "account_id": 1002572639,
+                    "account_name": "bakabum"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1357795023,
+                    "account_id": 1002858922,
+                    "account_name": "chain_chomp"
+                },
+                {
+                    "role": "private",
+                    "role_i18n": "Private",
+                    "joined_at": 1413265162,
+                    "account_id": 1002944517,
+                    "account_name": "907OP_YEET"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1410923457,
+                    "account_id": 1002981052,
+                    "account_name": "bobcharles"
+                },
+                {
+                    "role": "reservist",
+                    "role_i18n": "Reservist",
+                    "joined_at": 1398141207,
+                    "account_id": 1003447462,
+                    "account_name": "MAI_WAIFUTRAGER_E_100"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1379299062,
+                    "account_id": 1003464848,
+                    "account_name": "Desuwa"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1413449277,
+                    "account_id": 1003548845,
+                    "account_name": "Sturm_"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1391989135,
+                    "account_id": 1003640996,
+                    "account_name": "Draak89"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1369449458,
+                    "account_id": 1004492071,
+                    "account_name": "Nyaandere"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1404088047,
+                    "account_id": 1005153265,
+                    "account_name": "TrueSC"
+                },
+                {
+                    "role": "intelligence_officer",
+                    "role_i18n": "Intelligence Officer",
+                    "joined_at": 1407550818,
+                    "account_id": 1005357469,
+                    "account_name": "killatron46"
+                },
+                {
+                    "role": "private",
+                    "role_i18n": "Private",
+                    "joined_at": 1412476775,
+                    "account_id": 1006622745,
+                    "account_name": "ToneCapwn"
+                },
+                {
+                    "role": "recruit",
+                    "role_i18n": "Recruit",
+                    "joined_at": 1427847827,
+                    "account_id": 1011487961,
+                    "account_name": "santolife"
+                }
+            ],
+            "old_name": "",
+            "is_clan_disbanded": false,
+            "motto": "360 no scope headshot blazeit all day erryday pass the doritos and do the dew bro",
+            "name": ">Vidya Gaems",
+            "creator_name": "Zazie",
+            "created_at": 1357205863,
+            "accepts_join_requests": true
+        }
+    }
+}

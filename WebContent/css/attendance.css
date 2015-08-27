@@ -1,0 +1,15 @@
+/***************** Global overwrites ***************/
+
+/***************** Media Queries *******************/
+
+/***************** Main Content ********************/
+.timeframe-search-type-container{
+	text-align: center;
+}
+.custom-timeframe-search-form-container{
+	width: 350px;
+	margin: 0px auto 10px auto;
+	padding-top: 10px;
+}
+/***************** Hacks and Tools *****************/
+

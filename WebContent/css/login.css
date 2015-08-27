@@ -1,0 +1,16 @@
+/** Global overwrites**/
+
+
+/** Main Content **/
+.login-form-container{
+	max-width: 325px;
+	margin: 0 auto;
+}
+.alert-login-error{
+	margin-top: 20px;
+}
+
+/** Hacks and Tools**/
+.button-size-dropdown{
+	height: 26px;
+}

@@ -1,0 +1,23 @@
+{
+    "status": "ok",
+    "count": 1,
+    "meta": {
+        "count": 1
+    },
+    "data": {
+        "1001167560": {
+            "clan": {
+                "members_count": 80,
+                "name": ">Vidya Gaems",
+                "color": "#F95C01",
+                "created_at": 1357205863,
+                "tag": "NTR",
+                "clan_id": 1000007315
+            },
+            "role": "executive_officer",
+            "role_i18n": "",
+            "joined_at": 1368503746,
+            "account_id": 1001167560
+        }
+    }
+}
