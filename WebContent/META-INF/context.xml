@@ -8,5 +8,5 @@
             username="temp" 
             password="temp" 
             driverClassName="com.mysql.jdbc.Driver"
-            url="jdbc:mysql://casa.blazeitalldayerrydaypassthedoritosanddothedewbro.com:3306/pms?allowMultiQueries=true"/>
+            url="jdbc:mysql://yourServerURL.com:3306/pms?allowMultiQueries=true"/>
 </Context>
